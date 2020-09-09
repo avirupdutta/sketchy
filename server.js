@@ -15,7 +15,7 @@ const io = socketio(server);
 app.use(express.static("static"));
 
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname + "/views/index.html"));
+	res.sendFile(path.join(__dirname + "/views/dashboard.html"));
 });
 
 //Listening for a user's connection
