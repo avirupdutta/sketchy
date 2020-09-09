@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CanvasEditor</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
+			integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK"
+			crossorigin="anonymous"
+		/>
+		<!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.1.0/fabric.js"
+      integrity="sha512-9/jsTBmWcciMm+MBeSW2j6Xk2oPNqXgubrb0CDDvlOgGRoyxmVrwjvvsUjypTgw3hGyoze6FdhCZUzjPBKLF0g=="
+      crossorigin="anonymous"
+    ></script> -->
+	</head>
+	<body>
+		<div class="jumbotron modal-box">
+			<div class="pb-3">
+				<button class="btn btn-danger" onclick="clearDrawing()">
+					Clear Screen
+				</button>
+				<button class="arrow arrow-right stop-btn" id="close">←</button>
+			</div>
+			<div class="pb-3 pt-3">
+				<button
+					class="btn btn-primary float-left"
+					onclick="changePen()"
+				>
+					Pen
+				</button>
+				<button
+					class="btn btn-secondary float-right"
+					onclick="changeEraser()"
+				>
+					Eraser
+				</button>
+				<div class="clearfix"></div>
+			</div>
+			<div class="pb-3">
+				<h3 class="d-flex justify-content-center">Change Stroke:</h3>
+				<input
+					type="range"
+					id="weight"
+					class="custom-range"
+					min="5"
+					max="50"
+					oninput="changeWeight()"
+				/>
+			</div>
+			<div class="d-flex justify-content-center">
+				<h3 class="pr-3">Change Color:</h3>
+				<input type="text" id="colorpicker" class="" />
+			</div>
+			<div class="pt-4">
+				<button
+					class="btn btn-block btn-danger"
+					onclick="saveMyCanvas()"
+				>
+					Save
+				</button>
+			</div>
+		</div>
+		<div id="myContainer"></div>
+	</body>
+	<link rel="stylesheet" href="css/index.css" />
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+	<link
+		rel="stylesheet"
+		type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css"
+	/>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+	<script src="js/sketch.js"></script>
+</html>
