@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sketchy</title>
+	</head>
+	<link
+		rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
+		integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK"
+		crossorigin="anonymous"
+	/>
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"
+	/>
+	<link rel="stylesheet" href="css/main.css" />
+	<body>
+		<main role="main">
+			<div class="container-fluid">
+				<div class="row">
+					<nav
+						id="sidebarMenu"
+						class="col-md-2 col-lg-1 d-md-block bg-theme sidebar collapse"
+					>
+						<img src="img/logo.png" class="brand-logo" alt="logo" />
+						<div class="sidebar-sticky pt-3">
+							<ul class="nav flex-column mt-0">
+								<li
+									class="nav-item"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Brush"
+								>
+									<span
+										class="iconify"
+										data-icon="ion:brush-outline"
+										data-inline="false"
+									></span>
+								</li>
+								<li
+									class="nav-item"
+									id="toggleColorPaletteModal"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Color Palette"
+								>
+									<span class="color-picker"></span>
+								</li>
+								<li
+									class="nav-item"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Brush width"
+								>
+									<span
+										class="iconify"
+										data-icon="ion:filter"
+										data-inline="false"
+									></span>
+								</li>
+							</ul>
+							<hr />
+							<ul class="nav flex-column">
+								<li
+									class="nav-item"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Eraser"
+								>
+									<span
+										class="iconify"
+										data-icon="ion:bandage-sharp"
+										data-inline="false"
+									></span>
+								</li>
+								<li
+									class="nav-item"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Clear Screen"
+								>
+									<span
+										class="iconify"
+										data-icon="ion:easel-outline"
+										data-inline="false"
+									></span>
+								</li>
+							</ul>
+							<hr />
+							<ul class="nav flex-column">
+								<li
+									class="nav-item"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Download sketch"
+								>
+									<span
+										class="iconify"
+										data-icon="ion:download-outline"
+										data-inline="false"
+									></span>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div class="col-md-10 ml-sm-auto col-lg-11 p-0">
+						<div
+							class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-1 h-100"
+						>
+							<canvas
+								class="canvas-area border border-danger"
+							></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+
+			$("#toggleColorPaletteModal").click(function() {
+				$("#colorPalette").modal();
+			});
+
+			const picker = Pickr.create({
+				el: ".color-picker",
+				theme: "classic", // or 'monolith', or 'nano'
+
+				swatches: [
+					"rgba(244, 67, 54, 1)",
+					"rgba(233, 30, 99, 0.95)",
+					"rgba(156, 39, 176, 0.9)",
+					"rgba(103, 58, 183, 0.85)",
+					"rgba(63, 81, 181, 0.8)",
+					"rgba(33, 150, 243, 0.75)",
+					"rgba(3, 169, 244, 0.7)",
+					"rgba(0, 188, 212, 0.7)",
+					"rgba(0, 150, 136, 0.75)",
+					"rgba(76, 175, 80, 0.8)",
+					"rgba(139, 195, 74, 0.85)",
+					"rgba(205, 220, 57, 0.9)",
+					"rgba(255, 235, 59, 0.95)",
+					"rgba(255, 193, 7, 1)"
+				],
+
+				components: {
+					// Main components
+					preview: true,
+					opacity: true,
+					hue: true,
+
+					// Input / output Options
+					interaction: {
+						hex: true,
+						rgba: true,
+						hsla: true,
+						hsva: true,
+						cmyk: true,
+						input: true,
+						clear: false,
+						save: true
+					}
+				}
+			});
+			picker.on("save", (color, instance) => {
+				console.log("save", color.toHEXA().toString());
+				instance.hide();
+			});
+		</script>
+	</body>
+</html>
