@@ -20,11 +20,17 @@
 		<main role="main">
 			<div class="container-fluid">
 				<div class="row">
+					<!-- Sidebar starts -->
 					<nav
 						id="sidebarMenu"
-						class="col-md-2 col-lg-1 d-md-block bg-theme sidebar collapse"
+						class="col-md-2 col-lg-1 d-md-block bg-theme sidebar collapse shadow"
 					>
-						<img src="img/logo.png" class="brand-logo" alt="logo" />
+						<a href="/"
+							><img
+								src="img/logo.png"
+								class="brand-logo"
+								alt="logo"
+						/></a>
 						<div class="sidebar-sticky pt-3">
 							<ul class="nav flex-column mt-0">
 								<li
@@ -32,6 +38,7 @@
 									data-toggle="tooltip"
 									data-placement="right"
 									title="Brush"
+									id="brush"
 								>
 									<span
 										class="iconify"
@@ -52,13 +59,18 @@
 									class="nav-item"
 									data-toggle="tooltip"
 									data-placement="right"
-									title="Brush width"
+									title="Width"
 								>
-									<span
-										class="iconify"
-										data-icon="ion:filter"
-										data-inline="false"
-									></span>
+									<!-- Brush width -->
+									<input
+										value="5"
+										type="range"
+										class="form-control-range"
+										id="brushWidthRange"
+									/>
+									<div class="d-flex justify-content-center">
+										<span id="brushWidthRangeLabel"></span>
+									</div>
 								</li>
 							</ul>
 							<hr />
@@ -68,6 +80,7 @@
 									data-toggle="tooltip"
 									data-placement="right"
 									title="Eraser"
+									id="eraser"
 								>
 									<span
 										class="iconify"
@@ -80,6 +93,7 @@
 									data-toggle="tooltip"
 									data-placement="right"
 									title="Clear Screen"
+									id="clearScreen"
 								>
 									<span
 										class="iconify"
@@ -95,6 +109,7 @@
 									data-toggle="tooltip"
 									data-placement="right"
 									title="Download sketch"
+									id="downloadImage"
 								>
 									<span
 										class="iconify"
@@ -105,15 +120,18 @@
 							</ul>
 						</div>
 					</nav>
+					<!-- Sidebar ends -->
+
+					<!-- Canvas starts -->
 					<div class="col-md-10 ml-sm-auto col-lg-11 p-0">
 						<div
-							class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-1 h-100"
+							class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-0 h-100"
+							id="canvasArea"
 						>
-							<canvas
-								class="canvas-area border border-danger"
-							></canvas>
+							<!-- Insert the p5 canvas here -->
 						</div>
 					</div>
+					<!-- Canvas ends -->
 				</div>
 			</div>
 		</main>
@@ -134,59 +152,7 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script>
-			$(function() {
-				$('[data-toggle="tooltip"]').tooltip();
-			});
-
-			$("#toggleColorPaletteModal").click(function() {
-				$("#colorPalette").modal();
-			});
-
-			const picker = Pickr.create({
-				el: ".color-picker",
-				theme: "classic", // or 'monolith', or 'nano'
-
-				swatches: [
-					"rgba(244, 67, 54, 1)",
-					"rgba(233, 30, 99, 0.95)",
-					"rgba(156, 39, 176, 0.9)",
-					"rgba(103, 58, 183, 0.85)",
-					"rgba(63, 81, 181, 0.8)",
-					"rgba(33, 150, 243, 0.75)",
-					"rgba(3, 169, 244, 0.7)",
-					"rgba(0, 188, 212, 0.7)",
-					"rgba(0, 150, 136, 0.75)",
-					"rgba(76, 175, 80, 0.8)",
-					"rgba(139, 195, 74, 0.85)",
-					"rgba(205, 220, 57, 0.9)",
-					"rgba(255, 235, 59, 0.95)",
-					"rgba(255, 193, 7, 1)"
-				],
-
-				components: {
-					// Main components
-					preview: true,
-					opacity: true,
-					hue: true,
-
-					// Input / output Options
-					interaction: {
-						hex: true,
-						rgba: true,
-						hsla: true,
-						hsva: true,
-						cmyk: true,
-						input: true,
-						clear: false,
-						save: true
-					}
-				}
-			});
-			picker.on("save", (color, instance) => {
-				console.log("save", color.toHEXA().toString());
-				instance.hide();
-			});
-		</script>
+		<script src="js/default.js"></script>
+		<script src="js/main.js"></script>
 	</body>
 </html>

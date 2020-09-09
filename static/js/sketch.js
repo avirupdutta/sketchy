@@ -120,5 +120,5 @@ function changeWeight() {
 }
 
 function saveMyCanvas() {
-	saveCanvas(cv, "myCanvas", "png");
+	saveCanvas(canvas, "myCanvas", "png");
 }
