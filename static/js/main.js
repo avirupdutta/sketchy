@@ -22,12 +22,18 @@ function setup() {
 function mouseDragged(e) {
 	const brushWidth = document.querySelector("#brushWidthRange").value;
 	let color = null;
-	if (e.srcElement.parentElement.id === "canvasArea" && modes.brush) {
+	if (
+		e.srcElement.parentElement &&
+		(e.srcElement.parentElement.id === "canvasArea" && modes.brush)
+	) {
 		color = hexColor;
 		stroke(hexColor);
 		strokeWeight(brushWidth);
 		line(mouseX, mouseY, pmouseX, pmouseY);
-	} else if (e.srcElement.parentElement.id === "canvasArea" && modes.eraser) {
+	} else if (
+		e.srcElement.parentElement &&
+		(e.srcElement.parentElement.id === "canvasArea" && modes.eraser)
+	) {
 		color = BACKGROUND_COLOR;
 		stroke(BACKGROUND_COLOR);
 		strokeWeight(brushWidth);
@@ -49,12 +55,18 @@ function mouseClicked(e) {
 	const brushWidth = document.querySelector("#brushWidthRange").value;
 	let color = null;
 
-	if (e.srcElement.parentElement.id === "canvasArea" && modes.brush) {
+	if (
+		e.srcElement.parentElement &&
+		(e.srcElement.parentElement.id === "canvasArea" && modes.brush)
+	) {
 		color = hexColor;
 		stroke(hexColor);
 		strokeWeight(brushWidth);
 		line(mouseX, mouseY, pmouseX, pmouseY);
-	} else if (e.srcElement.parentElement.id === "canvasArea" && modes.eraser) {
+	} else if (
+		e.srcElement.parentElement &&
+		(e.srcElement.parentElement.id === "canvasArea" && modes.eraser)
+	) {
 		color = BACKGROUND_COLOR;
 		stroke(BACKGROUND_COLOR);
 		strokeWeight(brushWidth);

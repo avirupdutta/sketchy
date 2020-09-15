@@ -19,11 +19,11 @@
 	<body>
 		<main role="main">
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row overflow-hidden">
 					<!-- Sidebar starts -->
 					<nav
 						id="sidebarMenu"
-						class="col-md-2 col-lg-1 d-md-block bg-theme sidebar collapse shadow"
+						class="col-5 col-md-2 col-lg-1 d-md-block bg-theme sidebar collapse shadow"
 					>
 						<a href="/"
 							><img
@@ -123,7 +123,16 @@
 					<!-- Sidebar ends -->
 
 					<!-- Canvas starts -->
-					<div class="col-md-10 ml-sm-auto col-lg-11 p-0">
+					<div
+						class="col-md-10 ml-sm-auto col-lg-11 p-0 canvas-wrapper"
+					>
+						<button class="btn menu-icon">
+							<span
+								class="iconify"
+								data-icon="ion:menu"
+								data-inline="false"
+							></span>
+						</button>
 						<div
 							class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-0 h-100"
 							id="canvasArea"
@@ -153,6 +162,7 @@
 		></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="js/default.js"></script>
+		<script src="js/responsive.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

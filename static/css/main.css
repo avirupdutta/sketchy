@@ -102,6 +102,17 @@ hr {
 	box-shadow: 0 0 6px 4px #2a95ad3b;
 }
 
+.sidebar {
+	transition: all 0.25s ease-in-out;
+}
+
+.menu-icon {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 @media only screen and (max-height: 740px) {
 	.nav {
 		margin: 1.5rem 0;
@@ -111,5 +122,14 @@ hr {
 @media only screen and (max-height: 650px) {
 	.nav {
 		margin: 0.75rem 0;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.canvas-wrapper {
+		height: 100vh;
+	}
+	.menu-icon {
+		display: block;
 	}
 }
