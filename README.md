@@ -8,11 +8,13 @@ Achieve real-time collaboration between multiple canvases while maintaining a se
 
 ![](./static/img/demo.png)
 
+---
+
 <br>
 
 ## **Primary Objective:**
 
-    The primary objective of the project is to share canvas data among multiple users. The sketchy would help us to share our thoughts in a parallel architecture. While in one canvas you would perform the work, the remaining canvases should be able to render the activity enabling the users to view it.
+The primary objective of the project is to share canvas data among multiple users. The sketchy would help us to share our thoughts in a parallel architecture. While in one canvas you would perform the work, the remaining canvases should be able to render the activity enabling the users to view it.
 
 <br>
 
