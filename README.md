@@ -40,7 +40,7 @@ This project acts as a medium of communication in various fields. This would sat
 
 -   [Express](https://github.com/expressjs/express)
 -   [Pickr](https://simonwep.github.io/pickr/)
--   Socket.io
+-   [Socket.io](https://github.com/socketio/socket.io)
 -   [p5](https://p5js.org/)
 -   [jQuery](https://jquery.com/)
 
