@@ -49,11 +49,11 @@ This project acts as a medium of communication in various fields. This would sat
 ## **How to Run:**
 
 1. Clone the repository.
-2. Install the Dependencies
+2. Install the Dependencies:-
     ```
     npm install or yarn install
     ```
-3. Run the Server
+3. Run the Server:-
 
     ```
     npm start or yarn start
