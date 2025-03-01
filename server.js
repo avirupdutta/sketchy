@@ -28,10 +28,20 @@ io.sockets.on("connection", socket => {
     socket.on("clear", () => {
         socket.broadcast.emit("clear");
     });
+    
+    // Handle undo action
+    socket.on("undo", () => {
+        socket.broadcast.emit("undo");
+    });
+    
+    // Handle redo action
+    socket.on("redo", () => {
+        socket.broadcast.emit("redo");
+    });
 });
 
 //port for listening
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 //Listening to port
 server.listen(PORT, () => {
